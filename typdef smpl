@@ -1,0 +1,36 @@
+//now to try with a structure containing a ptr or ptrs!!
+// ask yellow skins why my bytes aren't right?
+#include <stdio.h>
+#include <string.h>
+#include <stdio.h>
+#include <cs50.h>
+#include<stdbool.h>
+int xx=0;               // just proving I can add a global integer same as structs below
+typedef struct name
+{
+    bool i; //was int  4bytes+4bytes+8=16??
+    // char* nptr; replaced with struct    below
+    struct name * nptr; // this one!!!!
+} __attribute__((__packed__)) name; // note attrib had no impact!
+
+int main()
+{   xx++;
+    bool y=0;
+    name *p;   
+    p= malloc (sizeof(name));
+    (*p).i=10;
+    (*p).nptr = malloc(sizeof(name));
+
+int* p2=&xx;
+    printf("%p address of xx\n",p2);    
+    printf("%p address of xx\n",&xx);   
+    printf("%i i value\n",(*p).i);     
+    printf("%p address of structure name\n",p);   
+    // bad as expected -- printf("%p address of structure name\n",&name);  
+    printf("%p address of i in structure name is \n",(&(*p).i));   
+    printf("%p address the nptr in name points to\n",(*p).nptr);  
+    // printf("%i \n", sizeof((p*).i)); //nope this will not work
+    printf("size of boolean %i \n", sizeof(y));
+           
+    free(p);
+}    
